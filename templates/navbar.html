@@ -1,0 +1,41 @@
+{% load static %}
+
+<header class="header">
+    <div class="container container--narrow">
+      <a href="{% url 'selecting' %}" class="header__logo">
+        <button class="btn btn--sub">Lojë e re</button>
+      </a>
+
+      <nav class="header__nav">
+        <input type="checkbox" id="responsive-menu" />
+        <label for="responsive-menu" class="toggle-menu">
+          <span>Menu-ja</span>
+          <div class="toggle-menu__lines"></div>
+        </label>
+        
+        <ul class="header__menu">
+          {% if request.user.is_authenticated %}
+           <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <li class="header__menuItem"><a href="{% url 'profile' user.profile.username %}">Account</a></li>
+            <a href="{% url 'edit-profile' %}">Edit-Account</a>
+            <a href="">SETTINGS</a> <!--SETTINGS-->
+            <a href="{% url 'logout' %}" class="btn btn--sub">Log Out</a>
+          </div>
+          
+          <!-- Use any element to open the sidenav -->
+        <span onclick="openNav()">
+            {% if user.profile.profilepic %}
+            <img class="avatar avatar--md" src="{{ user.profile.profilepic.url }}" >
+            {% else %}
+            <img src="{% static 'images/profiles/user-default.png' %}" class="avatar avatar--md">
+            {% endif %}
+        </span>
+          
+          {% else %}
+          <li class="header__menuItem"><a href="{% url 'login' %}" class="btn btn--sub">Login/Sign Up</a></li>
+          {% endif%}
+        </ul>
+      </nav>
+    </div>
+</header>

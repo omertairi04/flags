@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'favicons/favicon.ico' %}" type="image/x-icon">
+
+     <!-- Icon - IconMonster -->
+     <link rel="stylesheet" href="https://cdn.iconmonstr.com/1.3.0/css/iconmonstr-iconic-font.min.css" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+     <link rel="stylesheet" href="{% static 'styles/index.css' %}" />
+
+    <title>
+        {% block title %} {% endblock title %}
+    </title>
+
+    <style>
+      body {
+        background-image: url('/static/images/worldmap.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top;
+      }
+      footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #f1f1f1;
+        padding: 10px 0;
+        text-align: center;
+      }
+    </style>
+</head>
+<body>
+    
+    {# {% include 'navbar.html' %} #}
+
+    {% block content %}
+
+    {% endblock content %}
+
+</body>
+<script>
+function startTimer(duration) {
+  var timer = duration, seconds;
+  var interval = setInterval(function () {
+    seconds = parseInt(timer % 60, 10);
+
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    document.getElementById("timer").innerHTML = seconds;
+
+    if (--timer < 0) {
+      console.log("Time's up!");
+      clearInterval(interval);
+      window.location = "{% url 'selecting' %}";
+    }
+  }, 1000);
+}
+
+startTimer(30);
+</script>
+</html>

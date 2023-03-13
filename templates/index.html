@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Gjejë flamurin{% endblock title %}
+
+{% block content %}
+<div style="text-align: center;">
+    <p style="text-align: left;
+    color: #1164B4;">SCORE: {{score}}</p>
+    <!-- <div id="counter"></div> -->
+    <div class="text-content">
+        <p style="font-size: 30px;color: #003262;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        margin-top: -30px;"
+        >Gjejë flamurin</p>
+    </div>
+</div>
+
+<div>
+    <div class="clubs">
+        <div class="club-content">
+            <img class="club-img" src="{{ flag.flag_photo.url }}" alt="club-image">
+        </div>
+    </div>
+    <br>
+
+    <form id="form" action="" method="POST" class="form auth__form">
+        {% csrf_token %}
+        <div class="form__field">
+            <input
+            class="input input--text"
+            style="width: 50%;margin-left: 320px;height: 50px;border-radius: 10px;
+            color: black;font-size: 25px;"
+            id="input"
+            type="text"
+            name="flag_guess"
+            placeholder="Shkruaj emrin e shtetit"
+          />
+          <input class="btn" type="submit" value="Input" style="height: 50px;border-radius: 10px;" />
+        </div>
+    </form> 
+
+</div>
+{% endblock content %}
